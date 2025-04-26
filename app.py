@@ -18,6 +18,11 @@ from dotenv import load_dotenv
 
 app = Flask(__name__)
 
+app.config['Upload_folder_HouseHolds'] = 'uploads/households'
+app.config['Upload_folder_Products'] = 'uploads/products'
+app.config['Upload_folder_Transactions'] = 'uploads/transactions'
+
+os.makedirs(app.config['Upload_folder_HouseHolds'], exist_ok=True)
 
 server = os.getenv('DB_SERVER')
 database = os.getenv('DB_NAME')
@@ -801,4 +806,4 @@ def storeuploadedTransactionfile():
     return render_template('UploadData.html',messageTransactions=message)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
